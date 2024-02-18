@@ -42,6 +42,7 @@ public class List {
         Node current = first; 
         while(current != null) { 
             sb.append(current.cp.toString());
+            sb.append(" ");
             current = current.next; 
         }
               
