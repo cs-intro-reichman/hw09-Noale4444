@@ -1,6 +1,6 @@
 import java.util.HashMap;
-import java.util.ListIterator;
 import java.util.Random;
+
 
 public class LanguageModel {
 
@@ -37,7 +37,7 @@ public class LanguageModel {
 		In in = new In(fileName);
         String text = in.readAll(); 
         in.close();
-        text.trim(); 
+        text = text.trim(); 
         for(int i = 0; i < text.length() - windowLength; i++){ 
             boolean hasNext = i+windowLength < text.length(); 
 
@@ -82,18 +82,11 @@ public class LanguageModel {
     // Returns a random character from the given probabilities list.
 	public char getRandomChar(List probs) {
         double random = randomGenerator.nextDouble();
-        ListIterator itr = new ListIterator(probs.getFirstNode());
-        CharData start = probs.getFirst();
-        if(random < start.cp) 
-        return start.chr; 
-
-        while(itr.hasNext()) { 
-            CharData current = itr.next().cp; 
-            if( random < current.cp) 
-            return current.chr;
+        int i = 0; 
+        while(probs.listIterator(i).current.cp.cp < random) {
+            i++; 
         }
-        return ' ';
-            
+            return probs.get(i).chr;
     }
 
     /**
