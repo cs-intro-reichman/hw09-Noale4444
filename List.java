@@ -1,3 +1,4 @@
+
 /** A linked list of character data objects.
  *  (Actually, a list of Node objects, each holding a reference to a character data object.
  *  However, users of this class are not aware of the Node objects. As far as they are concerned,
@@ -37,18 +38,19 @@ public class List {
     }
     
     /** GIVE Textual representation of this list. */
-    public String toString() {
-        StringBuilder sb = new StringBuilder("("); 
-        Node current = first; 
-        while(current != null) { 
-            sb.append(current.cp.toString());
-            sb.append(" ");
-            current = current.next; 
-        }
-              
-               return sb.append(")").toString();
-
+     public String toString() {
+        StringBuilder sb = new StringBuilder("(");
+       for(int i = 0; i < size; i++) { 
+        sb.append(this.listIterator(i).current).toString();
+       }
+       return sb.append(")").toString();
     }
+
+
+
+   
+       
+
 
     /** Returns the index of the first CharData object in this list
      *  that has the same chr value as the given char,
@@ -144,7 +146,8 @@ public class List {
     /** Returns an iterator over the elements in this list, starting at the given index. */
     public ListIterator listIterator(int index) {
 	    // If the list is empty, there is nothing to iterate   
-	    if (size == 0) return null;
+	    if (size == 0) 
+        return null;
 	    // Gets the element in position index of this list
 	    Node current = first;
 	    int i = 0;
@@ -154,5 +157,8 @@ public class List {
         }
         // Returns an iterator that starts in that element
 	    return new ListIterator(current);
-    }
+    
+ } 
+
 }
+
